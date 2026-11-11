@@ -142,12 +142,12 @@ public class SwerveModule {
                 .idleMode(SwerveConstants.angleIdleMode)
                 .inverted(SwerveConstants.angleMotorInvert).closedLoop
                 .pid(
-                        SwerveConstants.turnKP,
-                        SwerveConstants.turnKI,
-                        SwerveConstants.turnKD,
+                        SwerveConstants.angleKP,
+                        SwerveConstants.angleKI,
+                        SwerveConstants.angleKD,
                         ClosedLoopSlot.kSlot0)
                 .outputRange(-SwerveConstants.anglePower, SwerveConstants.anglePower);
-        turnSparkMaxConfig.closedLoop.feedForward.kV(SwerveConstants.turnKF);
+        turnSparkMaxConfig.closedLoop.feedForward.kV(SwerveConstants.angleKF);
         turnEncoderConfig
                 .positionConversionFactor(SwerveConstants.DegreesPerTurnRotation)
                 .velocityConversionFactor(SwerveConstants.DegreesPerTurnRotation / 60); 
