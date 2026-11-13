@@ -50,7 +50,7 @@ public class SwerveModule {
 
     private final VelocityVoltage driveVelocity = new VelocityVoltage(0);
 
-    public SwerveModule(int id, ModuleConstants moduleConstants) {
+    public Module(int id, ModuleConstants moduleConstants) {
         this.id = id;
         this.angleOffset = moduleConstants.angleOffset;
 
