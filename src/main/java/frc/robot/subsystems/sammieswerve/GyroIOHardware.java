@@ -23,4 +23,9 @@ public class GyroIOHardware implements GyroIO{
     public void setYaw(Rotation2d angle) {
         navx.setAngleAdjustment(angle.getDegrees());
     }
+
+    @Override
+    public Rotation2d getRotation2d() {
+        return Rotation2d.kZero;
+    }
 }

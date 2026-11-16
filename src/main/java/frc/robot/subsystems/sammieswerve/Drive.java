@@ -13,6 +13,8 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.SwerveConstants;
@@ -80,7 +82,7 @@ public class Drive extends SubsystemBase {
     SwerveModulePosition[] modulePositions = new SwerveModulePosition[4];
     SwerveModulePosition[] moduleDeltas = new SwerveModulePosition[4];
     for (int moduleIndex = 0; moduleIndex < 4; moduleIndex++) {
-      modulePositions[moduleIndex] = modules[moduleIndex].getOdometryPositions()[moduleIndex];
+      modulePositions[moduleIndex] = modules[moduleIndex].getModulePosition();
       moduleDeltas[moduleIndex] =
           new SwerveModulePosition(
               modulePositions[moduleIndex].distanceMeters - lastModulePositions[moduleIndex].distanceMeters,
@@ -98,18 +100,18 @@ public class Drive extends SubsystemBase {
   public void setModuleStates(SwerveModuleState[] desiredStates) {
     SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, Constants.SwerveConstants.kMaxTeleAngularSpeed);
 
-    for (SwerveModule module : swerveModules) {
+    for (Module module : modules) {
       module.setDesiredState(desiredStates[module.id], false);
     }
   }
 
   public Rotation2d getYaw() {
-    return gyro.getRotation2d();
+    return gyroIO.getRotation2d();
   }
 
   public SwerveModulePosition[] getModulePositions() {
     SwerveModulePosition[] positions = new SwerveModulePosition[4];
-    for (SwerveModule module : swerveModules) {
+    for (Module module : modules) {
       positions[module.id] = module.getModulePosition();
     }
     return positions;
@@ -117,7 +119,7 @@ public class Drive extends SubsystemBase {
 
   public SwerveModuleState[] getModuleStates() {
     SwerveModuleState[] states = new SwerveModuleState[4];
-    for (SwerveModule module : swerveModules) {
+    for (Module module : modules) {
       states[module.id] = module.getState();
     }
     return states;
@@ -133,11 +135,11 @@ public class Drive extends SubsystemBase {
   }
 
   public void resetGyro() {
-    gyro.reset();
+    gyroIO.reset();
     rawGyroRotation = Rotation2d.kZero;
   }
 
   public void offsetGyro(double offset) {
-    gyro.setAngleAdjustment(offset);
+    gyroIO.setAngleAdjustment(offset);
   }
 }
