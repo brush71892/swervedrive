@@ -21,13 +21,17 @@ import frc.robot.subsystems.sammieswerve.GyroIO.GyroIOInputs;
 public class Drive extends SubsystemBase {
 
   private final GyroIO gyroIO;
-  private final Module[] modules = new Module[4];
+  private Module[] modules = new Module[4];
+  private SwerveModulePosition[] lastModulePositions = new SwerveModulePosition[4];
+
   public SwerveDriveOdometry swerveOdometry;
   public SwerveDrivePoseEstimator poseEstimator;
   private Rotation2d rawGyroRotation = Rotation2d.kZero;
   private final GyroIOInputs gyroInputs = new GyroIOInputs();
 
-  public Drive(ModuleIO frontLeftIO, ModuleIO frontRightIO, ModuleIO backLeftIO, ModuleIO backRightIO) {
+  public Drive(GyroIO gyroIO, ModuleIO frontLeftIO, ModuleIO frontRightIO, ModuleIO backLeftIO, ModuleIO backRightIO) {
+    this.gyroIO = gyroIO;
+
     modules = new Module[] {
       new Module(frontLeftIO, 0, Constants.ModConstants.Mod0.constants),
       new Module(frontRightIO, 1, Constants.ModConstants.Mod1.constants),
@@ -37,6 +41,10 @@ public class Drive extends SubsystemBase {
 
     resetModules();
     zeroYaw();
+  }
+
+  public void resetModules() {
+
   }
 
   public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
@@ -72,7 +80,7 @@ public class Drive extends SubsystemBase {
     SwerveModulePosition[] modulePositions = new SwerveModulePosition[4];
     SwerveModulePosition[] moduleDeltas = new SwerveModulePosition[4];
     for (int moduleIndex = 0; moduleIndex < 4; moduleIndex++) {
-      modulePositions[moduleIndex] = modules[moduleIndex].getOdometryPositions()[i];
+      modulePositions[moduleIndex] = modules[moduleIndex].getOdometryPositions()[moduleIndex];
       moduleDeltas[moduleIndex] =
           new SwerveModulePosition(
               modulePositions[moduleIndex].distanceMeters - lastModulePositions[moduleIndex].distanceMeters,

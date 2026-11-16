@@ -1,6 +1,9 @@
+package frc.robot.subsystems.sammieswerve;
 
+import edu.wpi.first.math.geometry.Rotation2d;
 
 public interface GyroIO {
+    
     public static class GyroIOInputs {
         public boolean connected = false;
         public Rotation2d yawPosition = Rotation2d.kZero;
