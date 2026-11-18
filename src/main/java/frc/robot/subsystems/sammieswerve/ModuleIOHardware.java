@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package frc.robot.subsystems.sammieswerve;
 
 import com.ctre.phoenix6.configs.CANcoderConfiguration;
@@ -131,10 +130,3 @@ public class ModuleIOHardware implements ModuleIO{
         return Rotation2d.fromDegrees(turnEncoder.getPosition());
     }
 }
-=======
-package frc.robot.subsytems.sammieswerve;
-
-public class ModuleIOHardware implements ModuleIO {
-    
-}
->>>>>>> bfa27db4886a8c9e052d6059b46807b0f852f890
