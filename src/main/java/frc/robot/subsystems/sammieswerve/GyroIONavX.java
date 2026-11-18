@@ -7,10 +7,10 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.util.Units;
 import frc.robot.Constants;
 
-public class GyroIOHardware implements GyroIO{
+public class GyroIONavX implements GyroIO{
     private final AHRS navx = new AHRS(NavXComType.kMXP_SPI, (byte) 0.02);
 
-    public GyroIOHardware() {}
+    public GyroIONavX() {}
 
     @Override
     public void updateInputs(GyroIOInputs inputs) {
@@ -27,5 +27,10 @@ public class GyroIOHardware implements GyroIO{
     @Override
     public Rotation2d getRotation2d() {
         return Rotation2d.kZero;
+    }
+
+    @Override
+    public void reset() {
+        setYaw(Rotation2d.kZero);
     }
 }
