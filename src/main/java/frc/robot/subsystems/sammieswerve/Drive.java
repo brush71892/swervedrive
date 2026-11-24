@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.SwerveConstants;
 import frc.robot.subsystems.sammieswerve.GyroIO.GyroIOInputs;
+
 import org.littletonrobotics.junction.AutoLogOutput;
 import org.littletonrobotics.junction.Logger;
 
@@ -48,7 +49,7 @@ public class Drive extends SubsystemBase {
   }
 
   public void resetModules() {
-    
+    // sam
   }
 
   public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
@@ -82,10 +83,10 @@ public class Drive extends SubsystemBase {
     }
 
     SwerveModulePosition[] modulePositions = new SwerveModulePosition[4];
-    SwerveModulePosition[] moduleDeltas = new SwerveModulePosition[4];
+    SwerveModulePosition[] modulePositionChange = new SwerveModulePosition[4];
     for (int moduleIndex = 0; moduleIndex < 4; moduleIndex++) {
       modulePositions[moduleIndex] = modules[moduleIndex].getModulePosition();
-      moduleDeltas[moduleIndex] =
+      modulePositionChange[moduleIndex] =
           new SwerveModulePosition(
               modulePositions[moduleIndex].distanceMeters - lastModulePositions[moduleIndex].distanceMeters,
               modulePositions[moduleIndex].angle);

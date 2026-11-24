@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.DriveCommands;
-import frc.robot.commands.SamsDrihCommand;
+import frc.robot.commands.betterdrivecommand;
 import frc.robot.subsystems.SwerveSubsystem;
 import frc.robot.subsystems.sammieswerve.Drive;
 import frc.robot.subsystems.sammieswerve.GyroIONavX;
@@ -36,7 +36,7 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    drive.setDefaultCommand(new SamsDrihCommand(drive, () -> driverController.getLeftY() * 5, () -> driverController.getLeftX() * 5, () -> driverController.getRightX() * 5, () -> true));
+    drive.setDefaultCommand(new betterdrivecommand(drive, () -> driverController.getLeftY() * 5, () -> driverController.getLeftX() * 5, () -> driverController.getRightX() * 5, () -> true));
 
     // driveSubsystem.setDefaultCommand(new DriveCommands(() -> driverController.getLeftY() * 5, () -> driverController.getLeftX() * 5, () -> driverController.getRightX() * 5, () -> true));
 

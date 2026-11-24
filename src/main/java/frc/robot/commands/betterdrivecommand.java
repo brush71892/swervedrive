@@ -11,7 +11,7 @@ import frc.robot.Constants.SwerveConstants;
 import frc.robot.subsystems.SwerveSubsystem;
 import frc.robot.subsystems.sammieswerve.Drive;
 
-public class SamsDrihCommand extends Command {
+public class betterdrivecommand extends Command {
   private Drive drih;
   private PIDController rotationController;
   private DoubleSupplier ySpeedSupplier;
@@ -19,7 +19,7 @@ public class SamsDrihCommand extends Command {
   private DoubleSupplier rotationSupplier;
   private BooleanSupplier tip;
 
-  public SamsDrihCommand(Drive drih, DoubleSupplier ySpeedSupplier, DoubleSupplier xSpeedSupplier, DoubleSupplier rotationSupplier, BooleanSupplier tip) {
+  public betterdrivecommand(Drive drih, DoubleSupplier ySpeedSupplier, DoubleSupplier xSpeedSupplier, DoubleSupplier rotationSupplier, BooleanSupplier tip) {
     this.drih = drih;
     addRequirements(drih);
 
