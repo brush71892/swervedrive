@@ -36,7 +36,7 @@ public class Module {
     private Rotation2d angleOffset;
 
     private ModuleIO io;
-    private ModuleIOInputs inputs = new ModuleIOInputs();
+    private ModuleIOInputsAutoLogged inputs = new ModuleIOInputsAutoLogged();
 
     SimpleMotorFeedforward driveFeedForward = new SimpleMotorFeedforward(SwerveConstants.driveKS, SwerveConstants.driveKV, SwerveConstants.driveKA);
 
