@@ -19,6 +19,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.SwerveConstants;
 import frc.robot.subsystems.sammieswerve.GyroIO.GyroIOInputs;
+import org.littletonrobotics.junction.AutoLogOutput;
+import org.littletonrobotics.junction.Logger;
 
 public class Drive extends SubsystemBase {
 
@@ -29,7 +31,7 @@ public class Drive extends SubsystemBase {
   public SwerveDriveOdometry swerveOdometry;
   public SwerveDrivePoseEstimator poseEstimator;
   private Rotation2d rawGyroRotation = Rotation2d.kZero;
-  private final GyroIOInputs gyroInputs = new GyroIOInputs();
+  private final GyroIOInputsAutoLogged gyroInputs = new GyroIOInputsAutoLogged();
 
   public Drive(GyroIO gyroIO, ModuleIO frontLeftIO, ModuleIO frontRightIO, ModuleIO backLeftIO, ModuleIO backRightIO) {
     this.gyroIO = gyroIO;
